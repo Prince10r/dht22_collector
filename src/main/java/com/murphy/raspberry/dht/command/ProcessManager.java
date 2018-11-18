@@ -2,7 +2,6 @@ package com.murphy.raspberry.dht.command;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
