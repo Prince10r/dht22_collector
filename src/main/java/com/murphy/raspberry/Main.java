@@ -32,7 +32,7 @@ public class Main {
 	public HttpServer startServer() {
 		// create a resource config that scans for JAX-RS resources and providers
 		// in com.example.rest package
-		final ResourceConfig rc = new ResourceConfig().packages("com.example.rest");
+		final ResourceConfig rc = new ResourceConfig().packages("com.murphy.raspberry.dht.rest");
 		rc.register(JacksonFeature.class);
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI

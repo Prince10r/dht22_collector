@@ -17,7 +17,7 @@ import com.murphy.raspberry.dht.entity.DHTReading;
 @Path("dht")
 public class DHTResource {
 	
-	private String dateFormat = "HH:mm dd/MM/yyyy";
+	private String dateFormat = "HH:mm dd-MM-yyyy";
 	private SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
 	
 	DHTManager dhtManager = new DHTManager();

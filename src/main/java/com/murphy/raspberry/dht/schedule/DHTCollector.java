@@ -48,10 +48,10 @@ public class DHTCollector {
 		}
 	}
 
-	private DHTReading convert(String dhtString, int dhtId) {
+	public DHTReading convert(String dhtString, int dhtId) {
 		String[] parts = dhtString.split(" ");
-		String tempStr = parts[0].replaceAll("*", "");
-		String humPart = parts[1].replaceAll("%", "");
+		String tempStr = parts[0].split("=")[1].replaceAll("[*]", "");
+		String humPart = parts[2].split("=")[1].replaceAll("[%]", "");
 		DHTReading dhtReading = new DHTReading();
 		dhtReading.setDhtID(dhtId);
 		dhtReading.setDate(new Date());
