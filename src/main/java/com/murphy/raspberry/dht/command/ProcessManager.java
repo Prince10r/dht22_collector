@@ -41,6 +41,7 @@ public class ProcessManager {
 		public InvokeCommand(String directory, String command, CommandResultHandler cmdRstHndlr) {
 			this.command = command;
 			this.directory = directory;
+			this.cmdRstHndlr = cmdRstHndlr;
 		}
 		
 		public InvokeCommand(String directory, String command) {
