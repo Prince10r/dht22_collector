@@ -6,6 +6,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.commons.lang3.SystemUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.murphy.raspberry.dht.command.ProcessManager;
 import com.murphy.raspberry.dht.entity.DHT;
@@ -14,8 +16,10 @@ import com.murphy.raspberry.dht.entity.DHTReading;
 
 public class DHTCollector {
 
-	// Query every 5 mins
-	private int SCHEDULE = 5 * 60 * 1000;
+	private static final Logger LOG = LoggerFactory.getLogger(DHTCollector.class);
+	
+	// Query every 1 mins
+	private int SCHEDULE = 1 * 60 * 1000;
 
 	// Allow the system 40 seconds to start up.
 	private int SCHEDULE_DELAY = 3 * 1000;
@@ -41,7 +45,9 @@ public class DHTCollector {
 				processManager.queryDHT((success, message) -> {
 					if (success) {
 						DHTReading dhtReading = convert(message, dht.getId());
-						dhtManager.createDHTReading(dhtReading);
+						if (dhtReading != null) {
+							dhtManager.createDHTReading(dhtReading);
+						}
 					}
 				}, dht.getGpio());
 			}
@@ -49,15 +55,20 @@ public class DHTCollector {
 	}
 
 	public DHTReading convert(String dhtString, int dhtId) {
-		String[] parts = dhtString.split(" ");
-		String tempStr = parts[0].split("=")[1].replaceAll("[*]", "");
-		String humPart = parts[2].split("=")[1].replaceAll("[%]", "");
-		DHTReading dhtReading = new DHTReading();
-		dhtReading.setDhtID(dhtId);
-		dhtReading.setDate(new Date());
-		dhtReading.setTemperature(Float.parseFloat(tempStr));
-		dhtReading.setHumidity(Float.parseFloat(humPart));
-		return dhtReading;
+		try {
+			String[] parts = dhtString.split(" ");
+			String tempStr = parts[0].split("=")[1].replaceAll("[*]", "");
+			String humPart = parts[2].split("=")[1].replaceAll("[%]", "");
+			DHTReading dhtReading = new DHTReading();
+			dhtReading.setDhtID(dhtId);
+			dhtReading.setDate(new Date());
+			dhtReading.setTemperature(Float.parseFloat(tempStr));
+			dhtReading.setHumidity(Float.parseFloat(humPart));
+			return dhtReading;
+		} catch (Exception e) {
+			LOG.error("Failed to convert DHT Reading: " + dhtString);
+		}
+		return null;
 	}
 
 }
