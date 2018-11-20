@@ -75,7 +75,7 @@ public class ProcessManager {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} finally {
-				if (process != null && process.exitValue() == 0) {
+				if (process != null && error.length == 0) {
 					LOG.info("Command completed");
 					if(cmdRstHndlr != null) {
 						cmdRstHndlr.result(true, new String(message));
