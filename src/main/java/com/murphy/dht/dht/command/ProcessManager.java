@@ -1,4 +1,4 @@
-package com.murphy.raspberry.dht.command;
+package com.murphy.dht.dht.command;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,13 +16,6 @@ public class ProcessManager {
 	
 	public ProcessManager() {
 		fixedPool = Executors.newFixedThreadPool(4);
-	}
-	
-	public void send433Code(long code, int retry) {
-		//FIXME: Move this to a static file
-		String command = "./_433D -t9 -x" + retry + " " + code;
-		String directory = "/home/pi/433_sniffer";
-		fixedPool.execute(new InvokeCommand(directory , command));
 	}
 	
 	public void queryDHT(CommandResultHandler commandResultHandler, int gpio) {

@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-import com.murphy.raspberry.dht.schedule.DHTCollector;
+import com.murphy.dht.dht.entity.DHTManager;
+import com.murphy.dht.dht.entity.DHTReading;
+import com.murphy.dht.dht.schedule.DHTCollector;
+
+import static org.junit.Assert.*;
 
 public class DHTManagerTest {
 
@@ -14,7 +17,7 @@ public class DHTManagerTest {
 	public void testCreateDHTReading() {
 		String dhtString = "Temp=21.6*  Humidity=61.6%";
 		DHTCollector dhtCollector = new DHTCollector();
-		DHTReading dhtReading = dhtCollector.convert(dhtString, 5);
+		DHTReading dhtReading = dhtCollector.convert(dhtString, 5, new Date());
 		DHTManager dhtManager = new DHTManager();
 		dhtManager.createDHTReading(dhtReading);
 		

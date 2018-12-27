@@ -1,4 +1,4 @@
-package com.murphy.raspberry.dht.command;
+package com.murphy.dht.dht.command;
 
 public interface CommandResultHandler {
 	

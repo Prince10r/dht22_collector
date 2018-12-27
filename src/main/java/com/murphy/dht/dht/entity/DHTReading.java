@@ -1,4 +1,4 @@
-package com.murphy.raspberry.dht.entity;
+package com.murphy.dht.dht.entity;
 
 import java.util.Date;
 

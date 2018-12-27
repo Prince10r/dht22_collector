@@ -1,4 +1,4 @@
-package com.murphy.raspberry.dht.schedule;
+package com.murphy.dht.dht.schedule;
 
 import java.util.Date;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.murphy.raspberry.dht.command.ProcessManager;
-import com.murphy.raspberry.dht.entity.DHT;
-import com.murphy.raspberry.dht.entity.DHTManager;
-import com.murphy.raspberry.dht.entity.DHTReading;
+import com.murphy.dht.dht.command.ProcessManager;
+import com.murphy.dht.dht.entity.DHT;
+import com.murphy.dht.dht.entity.DHTManager;
+import com.murphy.dht.dht.entity.DHTReading;
 
 public class DHTCollector {
 
@@ -40,11 +40,12 @@ public class DHTCollector {
 
 	private void queryDHTs() {
 		List<DHT> dhts = dhtManager.getDHTs();
+		Date date = new Date();
 		if (SystemUtils.IS_OS_LINUX) {
 			for (final DHT dht : dhts) {
 				processManager.queryDHT((success, message) -> {
 					if (success) {
-						DHTReading dhtReading = convert(message, dht.getId());
+						DHTReading dhtReading = convert(message, dht.getId(), date);
 						if (dhtReading != null) {
 							dhtManager.createDHTReading(dhtReading);
 						}
@@ -54,14 +55,14 @@ public class DHTCollector {
 		}
 	}
 
-	public DHTReading convert(String dhtString, int dhtId) {
+	public DHTReading convert(String dhtString, int dhtId, Date date) {
 		try {
 			String[] parts = dhtString.split(" ");
 			String tempStr = parts[0].split("=")[1].replaceAll("[*]", "");
 			String humPart = parts[2].split("=")[1].replaceAll("[%]", "");
 			DHTReading dhtReading = new DHTReading();
 			dhtReading.setDhtID(dhtId);
-			dhtReading.setDate(new Date());
+			dhtReading.setDate(date);
 			dhtReading.setTemperature(Float.parseFloat(tempStr));
 			dhtReading.setHumidity(Float.parseFloat(humPart));
 			return dhtReading;

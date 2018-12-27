@@ -1,4 +1,4 @@
-package com.murphy.raspberry.dht.entity;
+package com.murphy.dht.dht.entity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class DHTManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DHTManager.class);
 	
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("myDbFile.odb");
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("dht.odb");
 	EntityManager em = emf.createEntityManager();
 	List<DHT> dhts = null;
 	

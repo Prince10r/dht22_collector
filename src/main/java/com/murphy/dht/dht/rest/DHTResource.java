@@ -1,4 +1,4 @@
-package com.murphy.raspberry.dht.rest;
+package com.murphy.dht.dht.rest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,8 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.murphy.raspberry.dht.entity.DHTManager;
-import com.murphy.raspberry.dht.entity.DHTReading;
+import com.murphy.dht.dht.entity.DHTManager;
+import com.murphy.dht.dht.entity.DHTReading;
 
 @Path("dht")
 public class DHTResource {

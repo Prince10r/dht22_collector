@@ -1,4 +1,4 @@
-package com.murphy.raspberry;
+package com.murphy.dht;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +10,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.murphy.raspberry.dht.schedule.DHTCollector;
+import com.murphy.dht.dht.schedule.DHTCollector;
 
 public class Main {
 
@@ -30,7 +30,7 @@ public class Main {
 	public HttpServer startServer() {
 		// create a resource config that scans for JAX-RS resources and providers
 		// in com.example.rest package
-		final ResourceConfig rc = new ResourceConfig().packages("com.murphy.raspberry.dht.rest");
+		final ResourceConfig rc = new ResourceConfig().packages("com.murphy.dht.dht.rest");
 		rc.register(JacksonFeature.class);
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI
