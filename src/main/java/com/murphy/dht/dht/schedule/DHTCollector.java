@@ -16,7 +16,7 @@ import com.murphy.dht.dht.entity.DHTReading;
 
 public class DHTCollector {
 
-	private static final Logger LOG = LoggerFactory.getLogger(DHTCollector.class);
+	private static final Logger logger = LoggerFactory.getLogger(DHTCollector.class);
 	
 	// Query every 1 mins
 	private int SCHEDULE = 1 * 60 * 1000;
@@ -67,7 +67,7 @@ public class DHTCollector {
 			dhtReading.setHumidity(Float.parseFloat(humPart));
 			return dhtReading;
 		} catch (Exception e) {
-			LOG.error("Failed to convert DHT Reading: " + dhtString);
+			logger.error("Failed to convert DHT Reading: " + dhtString);
 		}
 		return null;
 	}

@@ -15,7 +15,7 @@ import com.murphy.dht.dht.schedule.DHTCollector;
 public class Main {
 
 	
-	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
 	private static final String BASE_URI = "http://0.0.0.0:8080/";
 	
@@ -50,15 +50,15 @@ public class Main {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		LOG.info("Starting DHT Manager");
+		logger.info("Starting DHT Manager");
 		long startTime = System.currentTimeMillis();
 
 		Main main = new Main();
 		final HttpServer server = main.startServer();
 		main.startDHTCollector();
 		long endTime = System.currentTimeMillis();
-		LOG.info("Time to start up: " + (endTime - startTime) + " ms");
-		LOG.info("Webpage found at http://0.0.0.0:8080");
+		logger.info("Time to start up: " + (endTime - startTime) + " ms");
+		logger.info("Webpage found at http://0.0.0.0:8080");
 		
 	}
 	

@@ -12,7 +12,7 @@ public class ProcessManager {
 	
 	private static ExecutorService fixedPool;
 		
-	private static final Logger LOG = LoggerFactory.getLogger(ProcessManager.class);
+	private static final Logger logger = LoggerFactory.getLogger(ProcessManager.class);
 	
 	public ProcessManager() {
 		fixedPool = Executors.newFixedThreadPool(4);
@@ -54,7 +54,7 @@ public class ProcessManager {
 			Process process = null;
 			// ProcessBuilder pb = new ProcessBuilder("CMD", "/C", "mvn.bat
 			// dependency:tree");
-			LOG.info("Invoking Command " + command + " @ directory: " + directory);
+			logger.info("Invoking Command " + command + " @ directory: " + directory);
 			ProcessBuilder pb = new ProcessBuilder("sh", "-c", command);			
 			pb.directory(new File(directory));
 			byte[] error = null;
@@ -70,13 +70,13 @@ public class ProcessManager {
 				e.printStackTrace();
 			} finally {
 				if (process != null && error.length == 0) {
-					LOG.info("Command completed");
+					logger.info("Command completed");
 					if(cmdRstHndlr != null) {
 						cmdRstHndlr.result(true, new String(message));
 					}
 				}else {
 					String errorString = new String(error);
-					LOG.info("Command failed, " + errorString);
+					logger.info("Command failed, " + errorString);
 					if(cmdRstHndlr != null) {
 						cmdRstHndlr.result(true, errorString);
 					}					
