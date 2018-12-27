@@ -1,4 +1,4 @@
-package com.murphy.dht.dht.schedule;
+package com.murphy.dht.schedule;
 
 import java.util.Date;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.murphy.dht.dht.command.ProcessManager;
-import com.murphy.dht.dht.entity.DHT;
-import com.murphy.dht.dht.entity.DHTManager;
-import com.murphy.dht.dht.entity.DHTReading;
+import com.murphy.dht.command.ProcessManager;
+import com.murphy.dht.entity.DHT;
+import com.murphy.dht.entity.DHTManager;
+import com.murphy.dht.entity.DHTReading;
 
 public class DHTCollector {
 

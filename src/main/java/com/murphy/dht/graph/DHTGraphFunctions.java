@@ -1,4 +1,4 @@
-package com.murphy.dht.dht.graph;
+package com.murphy.dht.graph;
 
 public class DHTGraphFunctions {
 

@@ -1,4 +1,4 @@
-package com.murphy.dht.dht.rest;
+package com.murphy.dht.rest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,8 +14,8 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.murphy.dht.dht.entity.DHTManager;
-import com.murphy.dht.dht.entity.DHTReading;
+import com.murphy.dht.entity.DHTManager;
+import com.murphy.dht.entity.DHTReading;
 
 
 

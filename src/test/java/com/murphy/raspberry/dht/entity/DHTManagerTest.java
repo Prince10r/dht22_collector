@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.murphy.dht.dht.entity.DHTManager;
-import com.murphy.dht.dht.entity.DHTReading;
-import com.murphy.dht.dht.schedule.DHTCollector;
+import com.murphy.dht.entity.DHTManager;
+import com.murphy.dht.entity.DHTReading;
+import com.murphy.dht.schedule.DHTCollector;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package com.murphy.dht;
+package com.murphy;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,7 +11,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.murphy.dht.dht.schedule.DHTCollector;
+import com.murphy.dht.schedule.DHTCollector;
 import com.murphy.jersey.filter.CORSFilter;
 
 public class Main {
@@ -19,7 +19,7 @@ public class Main {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-	private static final String BASE_URI = "http://0.0.0.0:8080/";
+	private static final String BASE_URI = "http://0.0.0.0:8080/api";
 	
 	private DHTCollector dhtCollector;
 
@@ -32,9 +32,11 @@ public class Main {
 	public HttpServer startServer() {
 		// create a resource config that scans for JAX-RS resources and providers
 		// in com.example.rest package
-		final ResourceConfig rc = new ResourceConfig().packages("com.murphy.dht.dht.rest");
-		rc.register(JacksonFeature.class);
+		final ResourceConfig rc = new ResourceConfig().packages("com.murphy.dht.rest");
 		rc.register(new CORSFilter());
+		rc.register(JacksonFeature.class);		
+		
+		
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI
 		HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);

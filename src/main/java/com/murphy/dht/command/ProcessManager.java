@@ -1,4 +1,4 @@
-package com.murphy.dht.dht.command;
+package com.murphy.dht.command;
 
 import java.io.File;
 import java.io.IOException;

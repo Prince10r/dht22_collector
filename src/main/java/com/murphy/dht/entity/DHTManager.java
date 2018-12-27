@@ -1,4 +1,4 @@
-package com.murphy.dht.dht.entity;
+package com.murphy.dht.entity;
 
 import java.io.IOException;
 import java.util.ArrayList;

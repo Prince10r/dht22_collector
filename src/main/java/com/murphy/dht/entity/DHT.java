@@ -1,4 +1,4 @@
-package com.murphy.dht.dht.entity;
+package com.murphy.dht.entity;
 
 public class DHT {
 
