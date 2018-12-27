@@ -3,6 +3,7 @@ package com.murphy.dht;
 import java.io.IOException;
 import java.net.URI;
 
+import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.murphy.dht.dht.schedule.DHTCollector;
+import com.murphy.jersey.filter.CORSFilter;
 
 public class Main {
 
@@ -32,9 +34,15 @@ public class Main {
 		// in com.example.rest package
 		final ResourceConfig rc = new ResourceConfig().packages("com.murphy.dht.dht.rest");
 		rc.register(JacksonFeature.class);
+		rc.register(new CORSFilter());
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI
 		HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+
+		CLStaticHttpHandler staticHttpHandler = new CLStaticHttpHandler(Main.class.getClassLoader(), "www/static/");
+		staticHttpHandler.setFileCacheEnabled(false);
+		
+		httpServer.getServerConfiguration().addHttpHandler(staticHttpHandler, "/");
 		return httpServer;
 	}
 	
