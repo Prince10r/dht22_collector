@@ -19,10 +19,10 @@ public class DHTCollector {
 	private static final Logger logger = LoggerFactory.getLogger(DHTCollector.class);
 	
 	// Query every 1 mins
-	private int SCHEDULE = 1 * 60 * 1000;
+	private int SCHEDULE = 3 * 60 * 1000;
 
-	// Allow the system 40 seconds to start up.
-	private int SCHEDULE_DELAY = 3 * 1000;
+	// Allow the system 30 seconds to start up.
+	private int SCHEDULE_DELAY = 30 * 1000;
 
 	DHTManager dhtManager = new DHTManager();
 	ProcessManager processManager = new ProcessManager();
